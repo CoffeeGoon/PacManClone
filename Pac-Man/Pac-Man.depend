@@ -1,0 +1,55 @@
+# depslib dependency file v1.0
+1438377263 source:c:\users\kai\documents\dev\pac-man\src\ghost.cpp
+	"Ghost.h"
+
+1438373825 c:\users\kai\documents\dev\pac-man\include\ghost.h
+	<cmath>
+	<vector>
+	<SFML/System.hpp>
+	<SFML/Audio.hpp>
+	<SFML/Window.hpp>
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1437702678 source:c:\users\kai\documents\dev\pac-man\src\grid.cpp
+	"Grid.h"
+
+1437771894 c:\users\kai\documents\dev\pac-man\include\grid.h
+	<SFML/Graphics.hpp>
+	<vector>
+	"tile.h"
+
+1437693878 c:\users\kai\documents\dev\pac-man\include\tile.h
+	<SFML/System.hpp>
+	<SFML/Audio.hpp>
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+	<iostream>
+
+1438376890 source:c:\users\kai\documents\dev\pac-man\src\player.cpp
+	"player.h"
+
+1438373418 c:\users\kai\documents\dev\pac-man\include\player.h
+	<SFML/System.hpp>
+	<SFML/Audio.hpp>
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+	<iostream>
+
+1437512902 source:c:\users\kai\documents\dev\pac-man\src\tile.cpp
+	"tile.h"
+
+1438385562 source:c:\users\kai\documents\dev\pac-man\main.cpp
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+	<iostream>
+	<ctime>
+	<cmath>
+	<sstream>
+	<vector>
+	"tile.h"
+	"Grid.h"
+	"player.h"
+	"Ghost.h"
+
