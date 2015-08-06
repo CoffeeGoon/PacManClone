@@ -14,6 +14,14 @@ player::player()
     //ctor
 }
 
+void player::rehash(){
+gridy = 18;
+gridx = 13;
+direction = 0;
+stagger = 0;
+lives = 3;
+}
+
 void player::die(){
  gridy = 18;
  gridx = 13;

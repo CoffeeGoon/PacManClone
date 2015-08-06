@@ -11,7 +11,7 @@ Ghost::Ghost()
     //the coordinate location of the collision point
     //representation * 16
     pos = make_pair(13,17);
-    reset = 200;
+    reset = 150;
     //most likely useless variable
     seek = make_pair(0, 0);
 
@@ -44,21 +44,47 @@ Ghost::Ghost()
     dead = false;
 }
 
-void Ghost::res(){
+void Ghost::res(int n = 0){
  active = false;
  pos.first = 13;
 pos.second = 17;
 pelletcount = 0;
+if(n == 0){
 dead = true;
+}
+if(n == 1){
+    dead = false;
+    flee = false;
+    mode = true;
+}
+
 switch(version){
     case 1:
-pos.first = 13.5;
+pos.first = 14;
+if(n == 1){
+    pelletcount = 0;
+    GP = 20;
+}
     break;
     case 2:
-pos.first = 14;
+if(n == 1){
+  pelletcount = 4;
+   GP = 9;
+   }
+pos.first = 15;
     break;
     case 3:
-pos.first = 12.5;
+ if(n == 1){
+    pelletcount = 30;
+    GP = 30;
+ }
+pos.first = 12;
+    break;
+    case 4:
+    if(n == 1){
+        pelletcount = 60;
+        GP = 32;
+    }
     break;
 }
 
@@ -111,7 +137,7 @@ void Ghost::AI(int time, Coord& target, bool ch){
             //logic related to flee mode
              reset--;
              if(reset == 0){
-                reset = 200;
+                reset = 150;
                 rate = 2;
                 falter = 0;
                 blank = false;
@@ -206,7 +232,7 @@ if(curDir == 2 && pos.first >= 20.5 && pos.second == 17){
                  //makes reversing impossible
                 nextMove[(curDir + 2) % 4] = false;
 
-                if(dead && pos.first > 12 && pos.first < 14 && pos.second > 18 && pos.second < 20){
+                if(dead && pos.first == 13 && pos.second  == 19){
                      //nextMove[(curDir + 2) % 4] = true;
                     // GP--;
                      active = false;
@@ -214,13 +240,13 @@ if(curDir == 2 && pos.first >= 20.5 && pos.second == 17){
                      pos.second = 17;
                      switch( version ){
                  case 1:
-                     pos.first = 12;
+                     pos.first = 14;
                      break;
                  case 2:
-                    pos.first = 14;
+                    pos.first = 15;
                     break;
                  case 3:
-                    pos.first = 15;
+                    pos.first = 12;
                     break;
                      }
                 }

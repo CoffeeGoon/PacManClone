@@ -9,6 +9,8 @@ class Grid
 {
     public:
         Grid();
+        Grid(int n);
+        void reset();
         virtual ~Grid();
         vector<tile>* getMap(){ return grid;}
         void eat(){ pellets--;}

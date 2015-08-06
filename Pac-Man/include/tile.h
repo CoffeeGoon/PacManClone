@@ -25,6 +25,7 @@ class tile
         void setPellet(bool b){
              pellet = b;
              if(b){
+          img.scale(.50, .50);
          img.setFillColor( sf::Color(255,255,255) );
              }
              else{

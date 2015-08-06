@@ -28,7 +28,7 @@ class Ghost
         bool getAc(){return active;}
         bool getM(){return mode;}
         void die(){dead = true;}
-        void res();
+        void res(int n);
         bool getDead(){ return dead;}
         bool getBlank(){ return blank;}
         void setDir(int n){ curDir = n;}

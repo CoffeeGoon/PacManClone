@@ -18,6 +18,7 @@ class player
         virtual ~player();
         int getDir(){ return direction;}
         void die();
+        void rehash();
         pair<int, int> getPos(){ return  make_pair(int(gridx), int(gridy));}
         int getL(){ return lives;}
         pair<double, double> getGrid(){ return make_pair(gridx, gridy);}
