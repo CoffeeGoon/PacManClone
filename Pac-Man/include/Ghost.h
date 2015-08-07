@@ -29,6 +29,8 @@ class Ghost
         bool getM(){return mode;}
         void die(){dead = true;}
         void res(int n);
+        void tweak(){ twe = true;}
+        void detw(){twe = false;}
         bool getDead(){ return dead;}
         bool getBlank(){ return blank;}
         void setDir(int n){ curDir = n;}
@@ -61,6 +63,7 @@ class Ghost
       int curDir;
       bool flee;
       bool dead;
+      bool twe;
       bool* nextMove;
       bool active;
       bool mode;

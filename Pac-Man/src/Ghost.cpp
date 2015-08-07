@@ -14,7 +14,7 @@ Ghost::Ghost()
     reset = 150;
     //most likely useless variable
     seek = make_pair(0, 0);
-
+      twe = false;
     //checks for ajacent walls
     version = 0;
     //Global pellet counter
@@ -138,11 +138,15 @@ void Ghost::AI(int time, Coord& target, bool ch){
              reset--;
              if(reset == 0){
                 reset = 150;
+                 if(twe){
+                    reset = 100;
+                 }
                 rate = 2;
                 falter = 0;
                 blank = false;
                 flee = false;
              }
+
            }
     if(!active && pelletcount == 0){
             if(!dead){
@@ -153,7 +157,8 @@ void Ghost::AI(int time, Coord& target, bool ch){
             }
             else{
                 rate = 2;
-                reset = 300;
+                reset = 150;
+                if(twe){ reset = 150; }
                 falter = 0;
                 blank = false;
                 flee = false;
@@ -210,7 +215,10 @@ if(curDir == 2 && pos.first >= 20.5 && pos.second == 17){
 
                      //angling slow
           if(paths < 3 && nextMove[curDir] == false){
-            if(stutter % 2 == 0){
+            if(stutter % 2 == 0 && !twe){
+            rate = 1;
+          }
+          else if(stutter % 3 == 0){
             rate = 1;
           }
           stutter++;

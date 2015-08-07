@@ -237,8 +237,225 @@ switch(curdir){
 
 
  runtime++;
- Yow.traverse();
 
+ if(matrix[cor.first].at( 32 - cor.second).getPellet()){
+    matrix[cor.first].at(32 - cor.second).setPellet(false);
+}
+
+bool sw = false;
+for(int i = 0; i < 7; i++){
+    if(benches[i] != 0){
+        if(benches[i] == runtime){
+         runtime = 0;
+         benches[i] = 0;
+         bool sw = true;
+
+    }
+    section =  (i + 2) % 2;
+    break;
+}
+else if(i == 6){
+
+section = 1;
+
+}
+}
+
+pair<int, int> po = Yow.getPos();
+if(matrix[po.first].at(32 - po.second).getPow()){
+matrix[po.first].at(32 - po.second).setPow(false);
+ for(int i = 0; i < 4; i++){
+   ghosts[i].setFlee(true);
+ }
+sw = true;
+}
+
+//not altered yet
+//for determining inky loc
+pair<double, double> red = ghosts[0].getLoc();
+
+bool reset = false;
+//code block determines ajacent boundaries of Ghost objevt
+for(int k =0; k < 4; k++){
+pair<double, double> carts = ghosts[k].getLoc();
+bool safe[4];
+for(int i = 0; i < 4; i++){
+    safe[i] = false;
+    int fi = round(carts.first);
+    int si = round(carts.second);
+switch(i){
+case 0:
+    if(matrix[fi - 1].at(si).getWall()){
+        safe[i] = false;
+       // cout << "blocked " << i << endl;
+    }
+    else { safe[i] = true; }
+     break;
+case 1:
+      if(matrix[fi].at( si - 1 ).getWall()){
+        safe[i] = false;
+       // cout << "blocked " << i << endl;
+    }
+    else { safe[i] = true; }
+    break;
+case 2:
+     if(matrix[fi + 1].at(si).getWall()){
+        safe[i] = false;
+       // cout << "blocked " << i << endl;
+    }
+    else { safe[i] = true; }
+    break;
+case 3:
+     if(matrix[fi].at(si + 1).getWall()){
+        safe[i] = false;
+      //  cout << "blocked " << i << endl;
+    }
+    else { safe[i] = true; }
+    break;
+default:
+    break;
+
+}
+
+
+}
+
+ghosts[k].options(safe[0], safe[1], safe[2], safe[3]);
+
+if( floor(carts.first) == floor(Yow.getPos().first) &&  floor((32 - carts.second)) == floor(Yow.getPos().second) ||
+    ( abs(carts.first - Yow.getPos().first) < 1 && abs((32 - carts.second) - Yow.getPos().second) < 1 ) ){
+    if(ghosts[k].getFlee() || ghosts[k].getDead()){
+    ghosts[k].die();
+    score += 50;
+    sounds[2].play();
+}
+else{
+reset = true;
+    sounds[3].play();
+    Yow.die();
+}
+}
+//prevent from going up
+
+if(k == 0){
+pair<double, double> argy = make_pair(2, 27);
+if(ghosts[0].getM() && section == 1 || mapper.amount() < 20){
+argy.first = Yow.getGrid().first;
+argy.second = 32 - Yow.getGrid().second;
+}
+else{
+argy.second = 30;
+}
+ghosts[0].AI(200,argy, sw );
+}
+
+else if(k == 1){
+    pair<double, double> argy = make_pair(2, 1);
+    if(ghosts[1].getM() && section == 1){
+        double xchange = 0;
+         double ychange = 0;
+         int welp = Yow.getDir();
+         switch(welp){
+     case 0:
+        ychange = -4;
+        break;
+     case 1:
+        xchange =  - 4;
+        break;
+     case 2:
+        ychange = - 4;
+        break;
+     case 3:
+        xchange = 4;
+        break;
+     case 4:
+        ychange = 4;
+        break;
+     default:
+        break;
+        }
+        argy.first =  Yow.getGrid().first + xchange;
+        argy.second = 32 - Yow.getGrid().second + ychange;
+        ghosts[1].AI( 200 , argy , sw );
+    }
+    else{
+            argy.second = 30;
+     ghosts[1].AI(200,argy, sw );
+    }
+
+}
+
+ if(k == 2){
+    pair<double, double> scat = make_pair(30, 27);
+    if(ghosts[k].getM() && section == 1){
+        double xchange = 0;
+        double ychange = 0;
+        int welp = Yow.getDir();
+        pair<double, double> pac = Yow.getGrid();
+         switch(welp){
+       case 1:
+        pac.first -= 2;
+        break;
+       case 2:
+        pac.second -= 2;
+        break;
+       case 3:
+        pac.first += 2;
+        break;
+       case 4:
+        pac.second += 2;
+        break;
+       default:
+        break;
+         }
+         xchange = pac.first - red.first;
+         ychange = ( 32 - pac.second ) - red.second;
+         pair<double, double> targ = make_pair(xchange + pac.first, 32 - pac.second  + ychange);
+         ghosts[k].AI(200, targ, sw);
+
+    }else{
+        scat.second =  2;
+      ghosts[k].AI(200, scat, sw);
+    }
+}
+else if(k == 3){
+ pair<double, double> def = make_pair(3, 30);
+ if(ghosts[k].getM() && section == 1){
+    pair<double, double> pac = Yow.getGrid();
+    pair<double, double> gho = ghosts[k].getLoc();
+    double detx = abs(gho.first - (pac.first));
+    double dety = abs(gho.second - (32 - pac.second));
+    double det = sqrt((detx * detx) + (dety * dety));
+    if(det > 8){
+           // cout << "orange dist" << det << endl;
+        pac.second = 32 - pac.second;
+        ghosts[k].AI(200, pac, sw);
+    }
+    else{
+     def.second = 2;
+    ghosts[k].AI(200, def, sw);
+    }
+ }
+ else{
+        def.second = 2;
+    ghosts[k].AI(200, def, sw);
+ }
+
+
+
+
+}
+
+
+}
+
+ Yow.traverse();
+if(reset){
+     for(int i = 0; i < 4; i++){
+        ghosts[i].res(0);
+
+    }
+}
 
 }
 if(!intro && level == 1){
@@ -420,9 +637,9 @@ if( floor(carts.first) == floor(Yow.getPos().first) &&  floor((32 - carts.second
     sounds[2].play();
 }
 else{
-//reset = true;
-    //sounds[3].play();
-    //Yow.die();
+reset = true;
+    sounds[3].play();
+    Yow.die();
 }
 }
 //prevent from going up
@@ -590,7 +807,7 @@ for(int i = 0; i < 4; i++){
     pair<double, double> targ = ghosts[i].getSeek();
     lon.scale(.5, .5);
     lon.setPosition(targ.first * 16 - 4, (32 - targ.second) * 16 - 4);
-    window.draw(lon);
+   // window.draw(lon);
 }
 
 pair<int, int> posse = Yow.getPos();
@@ -738,7 +955,9 @@ deli = 13;
 Yow.rehash();
 for(int i = 0; i < 4; i++){
     ghosts[i].res(1);
+    ghosts[i].detw();
 }
+
 }
 
 if(level == -1){
@@ -747,6 +966,36 @@ if(level == -1){
 if(mapper.amount() < 2 && level == 1){
   level = 2;
   sounds[4].play();
+}
+if(mapper.amount() < 2 && level == 2 && zistion){
+    level = 1;
+    zistion = false;
+    intro = true;
+    benches[0] = 70;
+     benches[1] = 250;
+     benches[2] = 70;
+     benches[3] = 250;
+     benches[4] = 70;
+     benches[5] = 850;
+     benches[6] = 4;
+     autorelease = 50;
+     deli = 13;
+     Yow.setPos(13, 18);
+    Yow.setDir(0);
+    nextdir = 0;
+    runtime = 0;
+    deli = 13;
+    autorelease = 50;
+     for(int i = 0; i < 4; i++){
+            ghosts[i].res(1);
+            ghosts[i].tweak();
+     }
+     for(int i = 0; i < 28; i++){
+        matrix[i].clear();
+     }
+     mapper.reset();
+     matrix = mapper.getMap();
+
 }
 if((level == 2 && !zistion) || intro){
 
@@ -764,8 +1013,12 @@ if((level == 2 && !zistion) || intro){
      Yow.setPos(13, 18);
     Yow.setDir(0);
     nextdir = 0;
+    runtime = 0;
+    deli = 13;
+    autorelease = 50;
      for(int i = 0; i < 4; i++){
             ghosts[i].res(1);
+            ghosts[i].tweak();
      }
      for(int i = 0; i < 28; i++){
         matrix[i].clear();
@@ -847,6 +1100,106 @@ if(level == 2 && zistion && Yow.getL() > 0){
         basey--;
     }
 }
+
+
+pair<int, int> posse = Yow.getPos();
+
+//power pellet logic
+
+
+//pellet decrement
+if(matrix[posse.first].at(32 - posse.second).getPellet()){
+    matrix[posse.first].at(32 - posse.second).setPellet(false);
+    mapper.eat();
+    //if(sounds[1].Stopped ){
+      //  snack = false;
+    //}
+        if(!snack){
+        sounds[1].play();
+        sounds[1].setLoop(true);
+        snack = true;
+        }
+        deli = 13;
+
+    score += 10;
+   for(int n = 0; n < 4; n++){
+      if(ghosts[n].getDead()){
+        ghosts[n].decGP();
+    }
+   }
+    for(int i = 1; i < 4; i++){
+        if(ghosts[i].getPcount() > 0){
+            ghosts[i].setPcount( (ghosts[i].getPcount() - 1));
+            break;
+        }
+    }
+   // cout << mapper.amount() << endl;
+}
+else{
+    deli--;
+    if(deli <= 0){
+    sounds[1].stop();
+    snack = false;
+    deli = 13;
+    }
+    autorelease--;
+    if(autorelease <= 0){
+        autorelease = 50;
+        for(int k = 0; k < 4; k++){
+            if(!ghosts[k].getAc()){
+                ghosts[k].setPcount(0);
+                if(ghosts[k].getDead()){
+                    while(ghosts[k].getGP() > 0){
+                        ghosts[k].decGP();
+                    }
+                }
+                break;
+            }
+        }
+    }
+}
+
+if(Yow.getDir() == 1 &&  posse.first <= 2 && 32 - posse.second == 17){
+    Yow.setPos(25, posse.second);
+}
+if(Yow.getDir() == 3 && posse.first >= 25 && 32 - posse.second == 17){
+   Yow.setPos(2, posse.second);
+}
+    for(int i = 0; i < 4; i++){
+    if(!ghosts[i].getBlank()){
+    pair<double, double> carte = ghosts[i].getLoc();
+    sf::CircleShape bon = ghosts[i].getIm();
+    int frame = (runtime % 6)/2;
+    int row = i;
+    if(ghosts[i].getFlee()){
+        row = 4;
+    }
+    if(!ghosts[i].getDead()){
+    sprites[row].at(frame).setPosition( (32 - carte.second) * 16 - 4, carte.first * 16 - 4 );
+   // bon.setPosition(carte.first * 16, (32 - carte.second) * 16);
+    window.draw(sprites[row].at(frame));
+    }
+    else{
+        sprites[row].at(frame).setPosition( (32 - carte.second) * 16 - 4, carte.first * 16 - 4);
+   // sprites[row].at(frame).setPosition(carte.first * 16 - 4, (32 - carte.second) * 16 - 4);
+   sprites[0].at(3).setPosition( (32 - carte.second) * 16 - 4, carte.first * 16 - 4);
+//sprites[0].at(3).setPosition(carte.first * 16 - 4, (32 - carte.second) * 16 - 4);
+   // bon.setPosition(carte.first * 16, (32 - carte.second) * 16);
+     if(carte.second != 17 || carte.first < 11 || carte.first > 16){
+    window.draw(sprites[0].at(3));
+     }
+     else{
+         window.draw(sprites[row].at(frame));
+     }
+    }
+    }
+     sf::CircleShape lon = ghosts[i].getIm();
+    pair<double, double> targ = ghosts[i].getSeek();
+    lon.scale(.5, .5);
+    lon.setPosition( (32 - targ.second) * 16 - 4, targ.first * 16 - 4);
+//    window.draw(lon);
+}
+
 sf::CircleShape blah = sf::CircleShape(4);
 blah.setFillColor(sf::Color::Yellow);
 for(int i = 0; i < Yow.getL(); ++i){
@@ -870,7 +1223,7 @@ float swy = location.y;
 int frame = (runtime % 4)/ 2;
 if(frame == 0){
 sprites[4].at(3).setPosition(swy, swx);
-sprites[4].at(3).move(-10, -4);
+sprites[4].at(3).move(-4, -10);
 window.draw(sprites[4].at(3));
 }
 else{

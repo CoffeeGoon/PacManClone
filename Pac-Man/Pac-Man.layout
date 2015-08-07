@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="include\Grid.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\tile.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="184" topLine="5" />
+			<Cursor1 position="86" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="src\Grid.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
@@ -12,23 +12,41 @@
 		</Cursor>
 		<Folding>
 			<Collapse line="9" />
-			<Collapse line="14" />
-			<Collapse line="21" />
 		</Folding>
 	</File>
 	<File name="src\player.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="362" topLine="0" />
+			<Cursor1 position="379" topLine="5" />
+		</Cursor>
+		<Folding>
+			<Collapse line="3" />
+		</Folding>
+	</File>
+	<File name="include\player.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="459" topLine="5" />
 		</Cursor>
 	</File>
-	<File name="src\tile.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="include\Grid.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="86" topLine="0" />
+			<Cursor1 position="184" topLine="2" />
 		</Cursor>
 	</File>
 	<File name="src\Ghost.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="295" topLine="0" />
+			<Cursor1 position="4763" topLine="104" />
+		</Cursor>
+		<Folding>
+			<Collapse line="9" />
+			<Collapse line="46" />
+			<Collapse line="93" />
+			<Collapse line="101" />
+			<Collapse line="109" />
+		</Folding>
+	</File>
+	<File name="include\Ghost.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="800" topLine="27" />
 		</Cursor>
 	</File>
 	<File name="include\tile.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -36,39 +54,57 @@
 			<Cursor1 position="711" topLine="13" />
 		</Cursor>
 	</File>
-	<File name="include\Ghost.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1033" topLine="31" />
-		</Cursor>
-	</File>
 	<File name="main.cpp" open="1" top="1" tabpos="7" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="21008" topLine="679" />
+			<Cursor1 position="28310" topLine="823" />
 		</Cursor>
 		<Folding>
 			<Collapse line="71" />
 			<Collapse line="82" />
-			<Collapse line="247" />
-			<Collapse line="328" />
-			<Collapse line="335" />
-			<Collapse line="355" />
-			<Collapse line="435" />
-			<Collapse line="441" />
-			<Collapse line="543" />
+			<Collapse line="155" />
+			<Collapse line="158" />
+			<Collapse line="164" />
+			<Collapse line="167" />
+			<Collapse line="173" />
+			<Collapse line="176" />
+			<Collapse line="188" />
+			<Collapse line="191" />
+			<Collapse line="194" />
+			<Collapse line="197" />
+			<Collapse line="204" />
+			<Collapse line="245" />
+			<Collapse line="264" />
+			<Collapse line="345" />
+			<Collapse line="351" />
+			<Collapse line="353" />
+			<Collapse line="357" />
+			<Collapse line="380" />
+			<Collapse line="387" />
+			<Collapse line="389" />
+			<Collapse line="394" />
+			<Collapse line="420" />
+			<Collapse line="422" />
+			<Collapse line="428" />
+			<Collapse line="433" />
+			<Collapse line="438" />
+			<Collapse line="464" />
+			<Collapse line="511" />
+			<Collapse line="545" />
+			<Collapse line="552" />
+			<Collapse line="572" />
+			<Collapse line="574" />
+			<Collapse line="588" />
+			<Collapse line="592" />
+			<Collapse line="594" />
 			<Collapse line="601" />
-			<Collapse line="628" />
+			<Collapse line="608" />
+			<Collapse line="615" />
+			<Collapse line="632" />
+			<Collapse line="633" />
+			<Collapse line="638" />
+			<Collapse line="646" />
 			<Collapse line="652" />
-			<Collapse line="655" />
-			<Collapse line="711" />
-			<Collapse line="743" />
-			<Collapse line="746" />
-			<Collapse line="839" />
-			<Collapse line="851" />
+			<Collapse line="658" />
 		</Folding>
-	</File>
-	<File name="include\player.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="502" topLine="5" />
-		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

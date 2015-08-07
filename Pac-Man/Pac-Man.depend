@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1438887162 source:c:\users\kai\documents\dev\pac-man\src\ghost.cpp
+1438911877 source:c:\users\kai\documents\dev\pac-man\src\ghost.cpp
 	"Ghost.h"
 
-1438797880 c:\users\kai\documents\dev\pac-man\include\ghost.h
+1438912688 c:\users\kai\documents\dev\pac-man\include\ghost.h
 	<cmath>
 	<vector>
 	<SFML/System.hpp>
@@ -39,7 +39,7 @@
 1438893348 source:c:\users\kai\documents\dev\pac-man\src\tile.cpp
 	"tile.h"
 
-1438892772 source:c:\users\kai\documents\dev\pac-man\main.cpp
+1438913387 source:c:\users\kai\documents\dev\pac-man\main.cpp
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
